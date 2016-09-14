@@ -40,48 +40,37 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _redux = __webpack_require__(1);
+	var _actions = __webpack_require__(187);
 
-	var INCREMENT = 'INCREMENT',
-	    DECREMENT = 'DECREMENT';
+	var _store = __webpack_require__(189);
 
-	function counter() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	  var action = arguments[1];
+	/********************************************************************/
+	//import React from 'react';
+	//import {render} from 'react-dom';
+	var make = _store.store.dispatch;
 
-	  switch (action.type) {
-	    case INCREMENT:
-	      return state + 1;
-	    case DECREMENT:
-	      return state - 1;
-	    default:
-	      return state;
-	  }
-	};
+	make((0, _actions.add)(5, 5));
 
-	//let store = Redux.createStore(counter);
-	var store = (0, _redux.createStore)(counter);
+	make({ type: 'CLS' });
 
-	store.subscribe(function () {
-	  console.log(store.getState());
-	});
+	make({ type: 'INCREMENT' });
 
-	store.dispatch({ type: 'INCREMENT' });
+	make({ type: 'INCREMENT' });
 
-	store.dispatch({ type: 'INCREMENT' });
+	make({ type: 'DECREMENT' });
 
-	store.dispatch({ type: 'DECREMENT' });
-
-	alert("Привет");
+	//alert("Привет");
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -133,7 +122,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -319,7 +309,8 @@
 
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -585,7 +576,8 @@
 	}
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /***/ function(module, exports, __webpack_require__) {
 
 	var getPrototype = __webpack_require__(5),
@@ -661,7 +653,8 @@
 
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
 	var overArg = __webpack_require__(6);
@@ -673,7 +666,8 @@
 
 
 /***/ },
-/* 6 */
+
+/***/ 6:
 /***/ function(module, exports) {
 
 	/**
@@ -694,7 +688,8 @@
 
 
 /***/ },
-/* 7 */
+
+/***/ 7:
 /***/ function(module, exports) {
 
 	/**
@@ -720,7 +715,8 @@
 
 
 /***/ },
-/* 8 */
+
+/***/ 8:
 /***/ function(module, exports) {
 
 	/**
@@ -755,14 +751,16 @@
 
 
 /***/ },
-/* 9 */
+
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(10);
 
 
 /***/ },
-/* 10 */
+
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -790,7 +788,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 11 */
+
+/***/ 11:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -818,7 +817,8 @@
 	};
 
 /***/ },
-/* 12 */
+
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -966,7 +966,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 13 */
+
+/***/ 13:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -996,7 +997,8 @@
 	}
 
 /***/ },
-/* 14 */
+
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1052,7 +1054,8 @@
 	}
 
 /***/ },
-/* 15 */
+
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1115,7 +1118,8 @@
 	}
 
 /***/ },
-/* 16 */
+
+/***/ 16:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1157,5 +1161,103 @@
 	  };
 	}
 
+/***/ },
+
+/***/ 187:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.add = add;
+	exports.sub = sub;
+	/*Определяем действия*/
+	var INCREMENT = exports.INCREMENT = 'INCREMENT',
+	    DECREMENT = exports.DECREMENT = 'DECREMENT',
+	    ADD = exports.ADD = 'ADD',
+	    /*Сложение*/
+	SUB = exports.SUB = 'SUB',
+	    /*Вычитание*/
+	CLS = exports.CLS = 'CLS';
+
+	/*Создаём действие*/
+
+	function add() {
+	  var num1 = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	  var num2 = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+
+	  return { type: ADD, num1: num1, num2: num2 };
+	};
+
+	function sub() {
+	  var num1 = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	  var num2 = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+
+	  return { type: SUB, num1: num1, num2: num2 };
+	};
+
+/***/ },
+
+/***/ 188:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.counter = counter;
+
+	var _actions = __webpack_require__(187);
+
+	function counter() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	    var action = arguments[1];
+
+	    var actionType = action.type,
+	        a = action.num1,
+	        b = action.num2;
+
+	    switch (action.type) {
+	        case _actions.INCREMENT:
+	            return state + 1;
+	        case _actions.DECREMENT:
+	            return state - 1;
+	        case _actions.ADD:
+	            return a + b;
+	        case _actions.SUB:
+	            return a - b;
+	        case _actions.CLS:
+	            return 0;
+	        default:
+	            return state;
+	    }
+	};
+
+/***/ },
+
+/***/ 189:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.store = undefined;
+
+	var _redux = __webpack_require__(1);
+
+	var _reducers = __webpack_require__(188);
+
+	var store = exports.store = (0, _redux.createStore)(_reducers.counter);
+
+	store.subscribe(function () {
+	    console.log(store.getState());
+	});
+
 /***/ }
-/******/ ]);
+
+/******/ });

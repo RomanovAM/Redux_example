@@ -1,33 +1,19 @@
+//import React from 'react';
+//import {render} from 'react-dom';
+import {INCREMENT, DECREMENT, ADD, SUB, CLS, add, sub} from './actions';
+import {store} from './store';
+/********************************************************************/
+let make = store.dispatch;
 
-import { createStore } from 'redux';
-const INCREMENT = 'INCREMENT',
-      DECREMENT = 'DECREMENT';
-
-
-function counter(state = 0, action) {
-  switch (action.type) {
-  case INCREMENT:
-    return state + 1
-  case DECREMENT:
-    return state - 1
-  default:
-    return state
-  }
-};
+make(add(5,5));
 
 
-//let store = Redux.createStore(counter);
-let store = createStore(counter);
+make({ type: 'CLS' });
 
-store.subscribe(() =>{
-    console.log(store.getState());
-});
+make({ type: 'INCREMENT' });
 
+make({ type: 'INCREMENT' });
 
-store.dispatch({ type: 'INCREMENT' });
+make({ type: 'DECREMENT' });
 
-store.dispatch({ type: 'INCREMENT' });
-
-store.dispatch({ type: 'DECREMENT' });
-
-alert("Привет");
+//alert("Привет");
